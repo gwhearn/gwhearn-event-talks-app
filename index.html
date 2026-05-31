@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Talks Event Schedule</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+
+        header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+
+        .search-section {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        #categorySearch {
+            width: 80%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
+            transition: border-color 0.3s ease;
+        }
+
+        #categorySearch:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .talk-card {
+            background-color: #fdfdff;
+            border: 1px solid #e9ecef;
+            border-left: 5px solid #3498db;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .talk-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .talk-card.lunch-break {
+            border-left: 5px solid #e67e22; /* Orange for lunch */
+            background-color: #fff3e0;
+            text-align: center;
+            font-weight: bold;
+            color: #e67e22;
+            padding: 25px;
+        }
+
+        .talk-card h3 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .talk-card .time {
+            font-weight: bold;
+            color: #34495e;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .talk-card .speakers,
+        .talk-card .category {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .talk-card .category span {
+            background-color: #e0f2f7;
+            color: #2980b9;
+            padding: 3px 8px;
+            border-radius: 3px;
+            margin-right: 5px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .talk-card .description {
+            margin-top: 15px;
+            color: #444;
+            border-top: 1px dashed #e0e0e0;
+            padding-top: 15px;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #e74c3c;
+            font-size: 1.2em;
+            margin-top: 30px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                margin: 10px auto;
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            #categorySearch {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Technical Talks Event</h1>
+            <p>Date: May 31, 2026</p>
+        </header>
+
+        <section class="search-section">
+            <input type="text" id="categorySearch" placeholder="Search by category (e.g., AI, Web Development)">
+        </section>
+
+        <section class="schedule-section" id="schedule">
+            <!-- Talks will be dynamically loaded here by JavaScript -->
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const talkData = [
+                {
+                    title: "Introduction to Generative AI",
+                    speakers: ["Dr. Anya Sharma"],
+                    category: ["AI", "Machine Learning"],
+                    duration: 60, // minutes
+                    description: "An overview of the exciting field of generative AI, covering its history, key models, and future potential."
+                },
+                {
+                    title: "Modern Web Development with React Hooks",
+                    speakers: ["Ben Carter", "Chloe Davis"],
+                    category: ["Web Development", "Frontend", "JavaScript"],
+                    duration: 60,
+                    description: "Dive deep into React Hooks, understanding how to build efficient and maintainable UIs with functional components."
+                },
+                {
+                    title: "Serverless Architectures on Google Cloud",
+                    speakers: ["Eva Rodriguez"],
+                    category: ["Cloud", "Backend"],
+                    duration: 60,
+                    description: "Explore the benefits and challenges of building serverless applications using Google Cloud Functions and other services."
+                },
+                {
+                    title: "Containerization with Docker and Kubernetes",
+                    speakers: ["Liam Foster"],
+                    category: ["DevOps", "Cloud"],
+                    duration: 60,
+                    description: "A practical guide to containerizing applications with Docker and orchestrating them with Kubernetes for scalable deployments."
+                },
+                {
+                    title: "Data Science Best Practices",
+                    speakers: ["Mia Chen"],
+                    category: ["Data Science", "Machine Learning"],
+                    duration: 60,
+                    description: "Learn about essential best practices for data cleaning, feature engineering, model selection, and evaluation."
+                },
+                {
+                    title: "Cybersecurity Fundamentals for Developers",
+                    speakers: ["Noah Bell"],
+                    category: ["Security", "Web Development"],
+                    duration: 60,
+                    description: "Understand common security vulnerabilities and how to write secure code to protect your applications and users."
+                }
+            ];
+
+            function generateSchedule(talks) {
+                const eventStartTime = new Date();
+                eventStartTime.setHours(10, 0, 0, 0); // Event starts at 10:00 AM
+
+                const lunchBreakStartHour = 13; // 1 PM
+                const lunchBreakStartMinute = 20; // 20 minutes past 1 PM
+                const lunchBreakDuration = 60; // 1 hour
+
+                let currentTime = new Date(eventStartTime.getTime());
+                const scheduledTalks = [];
+
+                for (let i = 0; i < talks.length; i++) {
+                    // Check for lunch break
+                    if (i === 3) { // After the third talk
+                        // Make sure current time is before lunch break start, otherwise it could skip the lunch if the first talk is too long or something changes
+                        if (currentTime.getHours() < lunchBreakStartHour || (currentTime.getHours() === lunchBreakStartHour && currentTime.getMinutes() < lunchBreakStartMinute)) {
+                            currentTime.setHours(lunchBreakStartHour, lunchBreakStartMinute, 0, 0);
+                        }
+                        scheduledTalks.push({
+                            type: "break",
+                            title: "Lunch Break",
+                            startTime: new Date(currentTime.getTime()),
+                            endTime: new Date(currentTime.getTime() + lunchBreakDuration * 60 * 1000)
+                        });
+                        currentTime = new Date(currentTime.getTime() + lunchBreakDuration * 60 * 1000); // Advance time past lunch
+                    }
+
+                    const talk = talks[i];
+                    const talkStartTime = new Date(currentTime.getTime());
+                    const talkEndTime = new Date(currentTime.getTime() + talk.duration * 60 * 1000);
+
+                    scheduledTalks.push({
+                        type: "talk",
+                        title: talk.title,
+                        speakers: talk.speakers,
+                        category: talk.category,
+                        description: talk.description,
+                        startTime: talkStartTime,
+                        endTime: talkEndTime
+                    });
+
+                    currentTime = new Date(talkEndTime.getTime() + 10 * 60 * 1000); // Add 10 mins transition
+                }
+                return scheduledTalks;
+            }
+
+            const fullSchedule = generateSchedule(talkData);
+            const scheduleContainer = document.getElementById('schedule');
+            const categorySearchInput = document.getElementById('categorySearch');
+
+            // Helper function to format time for display
+            function formatTime(date) {
+                return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            }
+
+            function renderSchedule(currentSchedule) {
+                scheduleContainer.innerHTML = ''; // Clear previous results
+
+                if (currentSchedule.filter(item => item.type === "talk").length === 0 && categorySearchInput.value.trim() !== '') {
+                    scheduleContainer.innerHTML = '<p class="no-results">No talks found matching your search criteria.</p>';
+                    return;
+                }
+
+                currentSchedule.forEach(item => {
+                    let itemHtml = '';
+                    if (item.type === "talk") {
+                        itemHtml = `
+                            <div class="talk-card">
+                                <span class="time">${formatTime(item.startTime)} - ${formatTime(item.endTime)}</span>
+                                <h3>${item.title}</h3>
+                                <p class="speakers">Speaker(s): ${item.speakers.join(', ')}</p>
+                                <p class="category">
+                                    ${item.category.map(cat => `<span>${cat}</span>`).join('')}
+                                </p>
+                                <p class="description">${item.description}</p>
+                            </div>
+                        `;
+                    } else if (item.type === "break") {
+                        itemHtml = `
+                            <div class="talk-card lunch-break">
+                                <span class="time">${formatTime(item.startTime)} - ${formatTime(item.endTime)}</span>
+                                <h3>${item.title}</h3>
+                            </div>
+                        `;
+                    }
+                    scheduleContainer.innerHTML += itemHtml;
+                });
+            }
+
+            // Initial render of the full schedule
+            renderSchedule(fullSchedule);
+
+            // Search functionality
+            categorySearchInput.addEventListener('input', (event) => {
+                const searchTerm = event.target.value.toLowerCase().trim();
+                let filteredTalks = [];
+
+                if (!searchTerm) {
+                    filteredTalks = fullSchedule; // Show all if search box is empty
+                } else {
+                    // Simpler filtering: filter `fullSchedule` and if a talk is filtered out, remove it.
+                    // The lunch break position is fixed in the `fullSchedule` and will remain.
+                    filteredTalks = fullSchedule.filter(item => {
+                        if (item.type === "talk") {
+                            return item.category.some(cat => cat.toLowerCase().includes(searchTerm));
+                        }
+                        // Always include the lunch break, regardless of search term, to keep the overall schedule structure consistent.
+                        // This assumes the user wants to see the lunch break even if no talks are found for a category.
+                        return item.type === "break";
+                    });
+                }
+                renderSchedule(filteredTalks);
+            });
+        });
+    </script>
+</body>
+</html>

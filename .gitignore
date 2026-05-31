@@ -1,0 +1,23 @@
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Build artifacts (if any were to be generated)
+/dist/
+/build/
+
+# Node.js specific
+/node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.npm/
+
+# Logs
+*.log
